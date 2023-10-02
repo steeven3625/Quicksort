@@ -1,0 +1,56 @@
+#include<iostream>
+#define limite 20
+
+using namespace std;
+
+void ingresar(int n, float arreglo[]);
+void ordenar(int inf, int sup, float arreglo[]);
+void mostrar(int n, float arreglo[]);
+
+int main(){
+	
+	float arreglo[limite];
+	int n;
+	cout<<"Digite el numero de elementos: ";cin>>n;
+	ingresar(n,arreglo);
+	ordenar(0,n-1, arreglo);
+	mostrar(n, arreglo);
+	
+}
+
+
+void ingresar(int n, float arreglo[]){
+	for (int i=0; i<n; i++){
+		cout<<"Digite el numero para la posicion "<<i<<": ";cin>>arreglo[i];
+	}
+}
+void ordenar(int inf, int sup, float arreglo[]){
+	int i=inf;
+	int j=sup;
+	float mitad=arreglo[(inf+sup)/2];
+	float aux;
+	do{
+		while(mitad>arreglo[i]) i++;
+		while(mitad<arreglo[j]) j--;
+		
+		if(i<=j){
+			aux=arreglo[i];
+			arreglo[i]=arreglo[j];
+			arreglo[j]=aux;
+				i++;
+				j--;
+		}
+	}while(i<=j);
+	if(inf<j) ordenar(inf, j, arreglo);
+	if(sup>i) ordenar(i, sup, arreglo);
+
+}
+
+
+
+
+void mostrar(int n, float arreglo[]){
+	for (int i=0; i<n; i++){
+		cout<<"El numero ordenado de "<<i<<" es: "<<arreglo[i]<<endl;
+	}
+}
